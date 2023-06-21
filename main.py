@@ -15,20 +15,24 @@ def get_usb_devices():
 
 
 def get_device_info(device_path):
-    # Извлекаем информацию о производителе из атрибутов устройства
-    manufacturer = subprocess.check_output(f'udevadm info --query=property --name={device_path} | grep "ID_VENDOR=" | cut -d "=" -f2', shell=True).decode('utf-8').strip()
-    # Извлекаем информацию о модели из атрибутов устройства
-    model = subprocess.check_output(f'udevadm info --query=property --name={device_path} | grep "ID_MODEL=" | cut -d "=" -f2', shell=True).decode('utf-8').strip()
-    # Извлекаем информацию о серийном номере из атрибутов устройства
-    serial_number = subprocess.check_output(f'udevadm info --query=property --name={device_path} | grep "ID_SERIAL=" | cut -d "=" -f2', shell=True).decode('utf-8').strip()
-    # Извлекаем информацию о Bus устройства
-    bus_number = subprocess.check_output(f'udevadm info --query=property --name={device_path} | grep "ID_BUS=" | cut -d "=" -f2', shell=True).decode('utf-8').strip()
-    # Извлекаем информацию о Device устройства
-    device_number = subprocess.check_output(f'udevadm info --query=property --name={device_path} | grep "ID_PATH_TAG=" | cut -d "=" -f2', shell=True).decode('utf-8').strip()
-    # Извлекаем информацию об ID устройства
-    device_id = subprocess.check_output(f'udevadm info --query=property --name={device_path} | grep "ID_MODEL_ID=" | cut -d "=" -f2', shell=True).decode('utf-8').strip()
-
-    # Возвращаем словарь с информацией об устройстве
+    manufacturer = subprocess.check_output(f'udevadm info --query=property \
+    --name={device_path} | grep "ID_VENDOR=" | cut -d "=" \
+    -f2', shell=True).decode('utf-8').strip()
+    model = subprocess.check_output(f'udevadm info --query=property \
+    --name={device_path} | grep "ID_MODEL=" | cut -d "=" \
+    -f2', shell=True).decode('utf-8').strip()
+    serial_number = subprocess.check_output(f'udevadm info --query=property \
+    --name={device_path} | grep "ID_SERIAL=" | cut -d "=" \
+    -f2', shell=True).decode('utf-8').strip()
+    bus_number = subprocess.check_output(f'udevadm info --query=property \
+    --name={device_path} | grep "ID_BUS=" | cut -d "=" \
+    -f2', shell=True).decode('utf-8').strip()
+    device_number = subprocess.check_output(f'udevadm info --query=property \
+    --name={device_path} | grep "ID_PATH_TAG=" | cut -d "=" \
+    -f2', shell=True).decode('utf-8').strip()
+    device_id = subprocess.check_output(f'udevadm info --query=property \
+    --name={device_path} | grep "ID_MODEL_ID=" | cut -d "=" \
+    -f2', shell=True).decode('utf-8').strip()
     device_info = {
         'manufacturer': manufacturer,
         'model': model,
@@ -68,7 +72,6 @@ def main():
         val = lsusb_grep(id_str)
         print(val)
 
+
 if __name__ == '__main__':
     sys.exit(main())
-
-    
