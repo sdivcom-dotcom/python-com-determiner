@@ -1,8 +1,8 @@
 ## python-com-determiner
 # Simple script that allows you to show working COM ports and ACM in an unix/linux system
-# python3 main.py
 ```
 {
+python3 main.py
 Device: /dev/ttyUSB1, Type: tty
 Manufacturer: Silicon_Labs
 Model: CP2102_USB_to_UART_Bridge_Controller
